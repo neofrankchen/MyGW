@@ -11,7 +11,7 @@ struct ContentView: View {
     
     @State var currentIndex = 0
     @State var slideFromRight = true
-    @State var isZoomed = false
+    
     let memories = [
         Memory(imageName: "image1", description: "公園で子どもたちが砂遊びをしています"),
         Memory(imageName: "image2", description: "公園で子どもたちがブランコをしています"),
@@ -26,9 +26,15 @@ struct ContentView: View {
                                .padding(.leading, 16)
                                .frame(maxWidth: .infinity,  alignment: .topLeading)
             Spacer()
-            Text("私のゴールデンウィーク")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+            HStack(spacing: 10) {
+                Image(systemName: "photo.on.rectangle")
+                    .font(.largeTitle)
+                    .foregroundStyle(.blue)
+                
+                Text("私のゴールデンウィーク")
+                    .font(.system(size: 30, weight: .bold))
+
+            }
             Spacer()
             
             Image(memories[currentIndex].imageName)
@@ -80,7 +86,7 @@ struct ContentView: View {
                 Button {
                     if currentIndex > 0 {
                         slideFromRight = false
-                        isZoomed = false
+                        
                         withAnimation(.easeInOut) {
                             currentIndex -= 1
                         }
@@ -98,7 +104,7 @@ struct ContentView: View {
                 Button {
                     if currentIndex < memories.count - 1 {
                         slideFromRight = true
-                        isZoomed = false
+                        
                         withAnimation(.easeInOut) {
                             currentIndex += 1
                         }
